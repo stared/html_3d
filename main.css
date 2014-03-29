@@ -1,0 +1,15 @@
+.frame {
+  fill: #fff;
+  stroke: #000;
+  stroke-width: 1.0px;
+}
+
+.pointLeft {
+  stroke: #000;
+  stroke-width: 1.0px;
+}
+
+.pointRight {
+  stroke: #000;
+  stroke-width: 1.0px;
+}
