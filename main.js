@@ -1,7 +1,7 @@
 var data = [];
 var i;
 
-var SHIFT = 450;
+// var SHIFT = 450;
 var LAYERS = 3;
 
 for (i=0; i < 50; i++) {
@@ -11,41 +11,49 @@ for (i=0; i < 50; i++) {
 }
 
 data = data.sort(function (a, b) {
-  return b.z - a.z; 
+  return b.z - a.z;
 });
 
-var svg = d3.select('#scatter').append('svg');
+var svgL = d3.select('#scatter')
+  .append('div')
+    .attr('class', 'columnLeft')
+    .append('svg')
+      .attr('width', 450)
+      .attr('height', 600);
 
-svg
-  .attr('width', 1000)
-  .attr('height', 600);
+var svgR = d3.select('#scatter')
+  .append('div')
+    .attr('class', 'columnRight')
+    .append('svg')
+      .attr('width', 400)
+      .attr('height', 600);
 
 var scale = d3.scale.linear()
   .domain([0, 1])
-  .range([0, 300]);
+  .range([50, 400-50]);
 
 var scaleZ = d3.scale.linear()
   .domain([0, LAYERS - 1])
   .range([-5, 5]);
 
 
-svg.append('rect')
+svgL.append('rect')
   .attr('class', 'frame')
   .attr('x', scale(0))
   .attr('y', scale(0))
   .attr('width', scale(1) - scale(0))
   .attr('height', scale(1) - scale(0));
 
-svg.append('rect')
+svgR.append('rect')
   .attr('class', 'frame')
-  .attr('x', SHIFT + scale(0))
+  .attr('x', scale(0))
   .attr('y', scale(0))
   .attr('width', scale(1) - scale(0))
   .attr('height', scale(1) - scale(0));
 
 var colors = d3.scale.category10();
 
-var pointsLeft = svg.selectAll('.pointLeft')
+var pointsLeft = svgL.selectAll('.pointLeft')
   .data(data);
 
 pointsLeft
@@ -66,7 +74,7 @@ pointsLeft
   });
 
 
-var pointsRight = svg.selectAll('.pointRight')
+var pointsRight = svgR.selectAll('.pointRight')
   .data(data);
 
 pointsRight
@@ -79,7 +87,7 @@ pointsRight
 
 pointsRight
   .attr('cx', function (d) {
-    return SHIFT + scale(d.x) + scaleZ(d.z);
+    return scale(d.x) + scaleZ(d.z);
   })
   .attr('cy', function (d) {
     return scale(d.y);

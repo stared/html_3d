@@ -1,5 +1,5 @@
 #container {
-	width: 900px;
+	width: 800px;
 	margin-left: auto;
 	margin-right: auto;
 }
@@ -12,6 +12,110 @@
 /*.text {
 	display: block;
 }*/
+
+.glassRed {
+	position: absolute;
+	float: left;
+	width: 75px;
+	height: 75px;
+	background: rgba(230, 100, 100, 0.15);
+	color: #222;
+	border: solid 1px #888;
+	border-radius: 4px;
+}
+
+.glassGreen {
+  position: absolute;
+  float: left;
+  width: 75px;
+  height: 75px;
+  background: rgba(100, 230, 100, 0.15);
+  color: #222;
+  border: solid 1px #888;
+  border-radius: 4px;
+
+}
+
+.glassBlue {
+	position: absolute;
+	float: left;
+	width: 75px;
+	height: 75px;
+	background: rgba(100, 100, 230, 0.15);
+	color: #222;
+	border: solid 1px #888;
+	border-radius: 4px;
+}
+
+.pos1L {
+	top: 70px;
+	left: 95px;
+	z-index:-5;
+}
+
+.pos1R {
+	top: 70px;
+	left: 105px;
+ 	z-index:-5;
+}
+
+
+.pos2L {
+	top: 320px;
+	left: 150px;
+	z-index:5;
+}
+
+.pos2R {
+	top: 320px;
+	left: 140px;
+	z-index:5;
+}
+
+
+.pos3L {
+	top: 350px;
+	left: 180px;
+	z-index:10;
+}
+
+.pos3R {
+	top: 350px;
+	left: 160px;
+	z-index:10;
+}
+
+.pos4L {
+	top: 150px;
+	left: 280px;
+	z-index:10;
+}
+
+.pos4R {
+	top: 150px;
+	left: 260px;
+	z-index:10;
+}
+
+.pos5L {
+	top: 200px;
+	left: 220px;
+	z-index:5;
+}
+
+.pos5R {
+	top: 200px;
+	left: 210px;
+	z-index:5;
+}
+
+
+.textMargin {
+	text-align:justify;
+	text-justify:inter-word;
+	margin-left: 50px;
+	margin-right: 50px;
+}
 
 .columnLeft {
 	position: relative;
