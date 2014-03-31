@@ -2,26 +2,31 @@ var data = [];
 var i;
 
 var SHIFT = 450;
+var LAYERS = 3;
 
-for (i=0; i < 25; i++) {
+for (i=0; i < 50; i++) {
   data.push({x: Math.random(),
              y: Math.random(),
-             z: Math.random()});
+             z: Math.floor(LAYERS * Math.random())});
 }
 
-var svg = d3.select('.container').append('svg');
+data = data.sort(function (a, b) {
+  return b.z - a.z; 
+});
+
+var svg = d3.select('#scatter').append('svg');
 
 svg
   .attr('width', 1000)
   .attr('height', 600);
 
 var scale = d3.scale.linear()
-  .domain([0,1])
-  .range([200,500]);
+  .domain([0, 1])
+  .range([0, 300]);
 
 var scaleZ = d3.scale.linear()
-  .domain([0,1])
-  .range([-5,5]);
+  .domain([0, LAYERS - 1])
+  .range([-5, 5]);
 
 
 svg.append('rect')
@@ -38,7 +43,7 @@ svg.append('rect')
   .attr('width', scale(1) - scale(0))
   .attr('height', scale(1) - scale(0));
 
-var colors = d3.scale.category20();
+var colors = d3.scale.category10();
 
 var pointsLeft = svg.selectAll('.pointLeft')
   .data(data);
@@ -51,13 +56,13 @@ pointsLeft
 
 pointsLeft
   .attr('cx', function (d) {
-    return scale(d.x) - scaleZ(d.x);
+    return scale(d.x) - scaleZ(d.z);
   })
   .attr('cy', function (d) {
     return scale(d.y);
   })
   .style('fill', function (d, i) {
-    return colors(i % 20);
+    return colors(d.z % 10);
   });
 
 
@@ -74,13 +79,13 @@ pointsRight
 
 pointsRight
   .attr('cx', function (d) {
-    return SHIFT + scale(d.x) + scaleZ(d.x);
+    return SHIFT + scale(d.x) + scaleZ(d.z);
   })
   .attr('cy', function (d) {
     return scale(d.y);
   })
   .style('fill', function (d, i) {
-    return colors(i % 20);
+    return colors(d.z % 10);
   });
 
 // There will be second cursor

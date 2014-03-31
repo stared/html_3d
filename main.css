@@ -1,15 +1,42 @@
+#container {
+	width: 900px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.blank {
+	/*width: 100%;*/
+	height: 150px;
+}
+
+/*.text {
+	display: block;
+}*/
+
+.columnLeft {
+	position: relative;
+	float: left;
+	width: 400px;
+}
+
+.columnRight {
+	position: relative;
+	float: left;
+	width: 400px;
+}
+
 .frame {
-  fill: #fff;
-  stroke: #000;
-  stroke-width: 1.0px;
+	fill: #fff;
+	stroke: #000;
+	stroke-width: 1.0px;
 }
 
 .pointLeft {
-  stroke: #000;
-  stroke-width: 1.0px;
+	stroke: #000;
+	stroke-width: 1.0px;
 }
 
 .pointRight {
-  stroke: #000;
-  stroke-width: 1.0px;
+	stroke: #000;
+	stroke-width: 1.0px;
 }
