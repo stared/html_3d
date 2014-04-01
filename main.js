@@ -18,15 +18,15 @@ var svgL = d3.select('#scatter')
   .append('div')
     .attr('class', 'columnLeft')
     .append('svg')
-      .attr('width', 450)
-      .attr('height', 600);
+      .attr('width', 400)
+      .attr('height', 400);
 
 var svgR = d3.select('#scatter')
   .append('div')
     .attr('class', 'columnRight')
     .append('svg')
       .attr('width', 400)
-      .attr('height', 600);
+      .attr('height', 400);
 
 var scale = d3.scale.linear()
   .domain([0, 1])
@@ -100,4 +100,81 @@ pointsRight
 // svg.on('mousemove', function (d) {
 //   console.log(d3.event.pageX, d3.event.pageY);
 // });
+
+
+var characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789?!";
+var randomChar = function () {
+  var len = characters.length;
+  return characters[Math.floor(len * Math.random())];
+}
+
+var message = [
+"Do you want to read something funny in work?",
+"I mean lols, cats, FB gossip, breaking news on stuff?"
+].join();
+
+var encrypted = [];
+var i;
+for (i = 0; i < 2*message.length; i++) {
+  if (i % 2 == 0) {
+    encrypted.push({character: message[i/2],
+                    z: 1,
+                    xRand: (Math.random() - 0.5)});
+  } else {
+    encrypted.push({character: randomChar(),
+                    z: 0,
+                    xRand: (Math.random() - 0.5)});
+  }
+}
+
+var svgCypherL = d3.select('#cypher')
+  .append('div')
+    .attr('class', 'columnLeft')
+    .append('svg')
+      .attr('width', 400)
+      .attr('height', 600);
+
+var svgCypherR = d3.select('#cypher')
+  .append('div')
+    .attr('class', 'columnRight')
+    .append('svg')
+      .attr('width', 400)
+      .attr('height', 600);
+
+var charL = svgCypherL.selectAll('.cypherChar')
+  .data(encrypted);
+
+var charR = svgCypherR.selectAll('.cypherChar')
+  .data(encrypted);
+
+var CHARS_PER_LINE = 20;
+
+charL.enter()
+  .append('text')
+    .attr('class','cypherChar')
+      .style('text-anchor', 'middle')
+      .attr('x', function (d, i) {
+        return 50 + (300/CHARS_PER_LINE) * (i % CHARS_PER_LINE) - 5 * d.z; // + 10 * d.xRand;
+      })
+      .attr('y', function (d, i) {
+        return 25 + (300/CHARS_PER_LINE) * Math.floor(i / CHARS_PER_LINE);
+      })
+      .text(function (d) {
+        return d.character;
+      });
+
+charR.enter()
+  .append('text')
+    .attr('class','cypherChar')
+      .style('text-anchor', 'middle')
+      .attr('x', function (d, i) {
+        return 50 + (300/CHARS_PER_LINE) * (i % CHARS_PER_LINE) + 5 * d.z; // + 10 * d.xRand;
+      })
+      .attr('y', function (d, i) {
+        return 25 + (300/CHARS_PER_LINE) * Math.floor(i / CHARS_PER_LINE);
+      })
+      .text(function (d) {
+        return d.character;
+      });
+
 

@@ -47,6 +47,31 @@
 	border-radius: 4px;
 }
 
+/*.glassGray {
+	position: absolute;
+	float: left;
+	width: 375px;
+	height: 420px;
+	stroke: #666;
+	color: #222;
+	opacity: 0.1;
+	border: solid 1px #000;
+	border-radius: 4px;
+}
+
+.pos0L {
+	top: -20px;
+	left: 15px;
+	z-index:-10;
+}
+
+.pos0R {
+	top: -20px;
+	left: 35px;
+ 	z-index:-10;
+}
+*/
+
 .pos1L {
 	top: 70px;
 	left: 95px;
