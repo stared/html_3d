@@ -174,3 +174,12 @@
 	stroke: #000;
 	stroke-width: 1.0px;
 }
+
+.tile {
+	/*fill: #99f;*/
+	stroke: #000;
+	stroke-width: 1.0px;
+	opacity: 0.75;
+/*	width: 40px;
+	height: 40px;*/
+}

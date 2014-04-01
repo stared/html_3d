@@ -134,14 +134,14 @@ var svgCypherL = d3.select('#cypher')
     .attr('class', 'columnLeft')
     .append('svg')
       .attr('width', 400)
-      .attr('height', 400);
+      .attr('height', 350);
 
 var svgCypherR = d3.select('#cypher')
   .append('div')
     .attr('class', 'columnRight')
     .append('svg')
       .attr('width', 400)
-      .attr('height', 400);
+      .attr('height', 350);
 
 var charL = svgCypherL.selectAll('.cypherChar')
   .data(encrypted);
@@ -179,4 +179,151 @@ charR.enter()
         return d.character;
       });
 
+var dungeonMap = [
+[0,0,0,0,0,0,9,0],
+[0,0,0,0,0,0,1,0],
+[0,0,1,1,1,0,1,0],
+[0,0,0,0,1,0,1,0],
+[0,0,1,1,1,0,1,0],
+[0,0,1,0,1,0,1,0],
+[0,0,1,0,1,1,1,0],
+[0,0,6,0,0,0,0,0]
+];
 
+var dungeonList = [];
+var thingsList = [];
+var j;
+var tmp;
+for (i = 0; i < dungeonMap.length; i++) {
+  for (j = 0; j < dungeonMap[i].length; j++) {
+    tmp = dungeonMap[i][j];
+    if (tmp === 6) {
+      tmp = 1;
+      thingsList.push({x: j,
+                       y: i,
+                       z: 0.5,
+                       what: "@"});
+    } else if (tmp === 9) {
+      tmp = 1;
+      thingsList.push({x: j,
+                       y: i,
+                       z: 0.5,
+                       what: "$"});   
+    }
+    dungeonList.push({x: j,
+                      y: i,
+                      z: tmp,
+                      rand: Math.random()});
+  }
+}
+
+var TILE_WIDTH = 25;
+
+var tileScale = d3.scale.linear()
+  .domain([0, dungeonMap.length -1])
+  .range([50, 300]);
+
+var svgGameL = d3.select('#game')
+  .append('div')
+    .attr('class', 'columnLeft')
+    .append('svg')
+      .attr('width', 400)
+      .attr('height', 400);
+
+var svgGameR = d3.select('#game')
+  .append('div')
+    .attr('class', 'columnRight')
+    .append('svg')
+      .attr('width', 400)
+      .attr('height', 400);
+
+var tileL = svgGameL.selectAll('.tile')
+  .data(dungeonList);
+
+var tileR = svgGameR.selectAll('.tile')
+  .data(dungeonList);
+
+tileL.enter()
+  .append('rect')
+    .attr('class', 'tile')
+    .attr('x', function (d) {
+      return tileScale(d.x) - 5 * d.z;
+    })
+    .attr('y', function (d) {
+      return tileScale(d.y);
+    })
+    .attr('width', TILE_WIDTH)
+    .attr('height', TILE_WIDTH)
+    .style('fill', function (d, i) {
+      return colors((i*i*i - i*i + 3*i) % 20);
+    });
+
+tileR.enter()
+  .append('rect')
+    .attr('class', 'tile')
+    .attr('x', function (d) {
+      return tileScale(d.x) + 5 * d.z;
+    })
+    .attr('y', function (d) {
+      return tileScale(d.y);
+    })
+    .attr('width', TILE_WIDTH)
+    .attr('height', TILE_WIDTH)
+    .style('fill', function (d, i) {
+      return colors((i*i*i - i*i + 3*i) % 20);
+    });
+
+var FONTSIZE = 30;
+
+svgGameL.selectAll('.special')
+  .data(thingsList)
+  .enter()
+    .append('text')
+    .attr('class', 'special')
+    .attr('font-size', FONTSIZE)
+    .style('text-anchor', 'middle')
+    .attr('x', function (d) {
+      return TILE_WIDTH/2 + tileScale(d.x) - 5 * d.z;
+    })
+    .attr('y', function (d) {
+      return FONTSIZE/2.7 + TILE_WIDTH/2 + tileScale(d.y);
+    })
+    .text(function (d) {
+      return d.what;
+    });
+
+svgGameR.selectAll('.special')
+  .data(thingsList)
+  .enter()
+    .append('text')
+      .attr('class', 'special')
+      .attr('font-size', FONTSIZE)
+      .style('text-anchor', 'middle')
+      .attr('x', function (d) {
+        return TILE_WIDTH/2 + tileScale(d.x) + 5 * d.z;
+      })
+      .attr('y', function (d) {
+        return FONTSIZE/2.7 + TILE_WIDTH/2 + tileScale(d.y);
+      })
+      .text(function (d) {
+        return d.what;
+      });
+
+
+svgGameL.append('text')
+  .attr('class', 'loading')
+  .attr('font-size', 50)
+  .style('opacity', 0.5)
+  .style('text-anchor', 'middle')
+  .attr('x', 200 + 5 * 2)
+  .attr('y', 150)
+  .text('loading...');
+
+svgGameR.append('text')
+  .attr('class', 'loading')
+  .attr('font-size', 50)
+  .style('opacity', 0.5)
+  .style('text-anchor', 'middle')
+  .attr('x', 200 - 5 * 2)
+  .attr('y', 150)
+  .text('loading...');
