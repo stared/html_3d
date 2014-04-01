@@ -110,7 +110,9 @@ var randomChar = function () {
 
 var message = [
 "Do you want to read something funny in work?",
-"I mean lols, cats, FB gossip, breaking news on stuff?"
+"I mean lols, cats, FB gossip, breaking news on stuff?",
+"The sad thing is now your boss think that you are handicapped",
+"Everything is a trade-off."
 ].join();
 
 var encrypted = [];
@@ -132,14 +134,14 @@ var svgCypherL = d3.select('#cypher')
     .attr('class', 'columnLeft')
     .append('svg')
       .attr('width', 400)
-      .attr('height', 600);
+      .attr('height', 400);
 
 var svgCypherR = d3.select('#cypher')
   .append('div')
     .attr('class', 'columnRight')
     .append('svg')
       .attr('width', 400)
-      .attr('height', 600);
+      .attr('height', 400);
 
 var charL = svgCypherL.selectAll('.cypherChar')
   .data(encrypted);
@@ -154,7 +156,7 @@ charL.enter()
     .attr('class','cypherChar')
       .style('text-anchor', 'middle')
       .attr('x', function (d, i) {
-        return 50 + (300/CHARS_PER_LINE) * (i % CHARS_PER_LINE) - 5 * d.z; // + 10 * d.xRand;
+        return 50 + (300/CHARS_PER_LINE) * (i % CHARS_PER_LINE) + 5 * d.z; // + 10 * d.xRand;
       })
       .attr('y', function (d, i) {
         return 25 + (300/CHARS_PER_LINE) * Math.floor(i / CHARS_PER_LINE);
@@ -168,7 +170,7 @@ charR.enter()
     .attr('class','cypherChar')
       .style('text-anchor', 'middle')
       .attr('x', function (d, i) {
-        return 50 + (300/CHARS_PER_LINE) * (i % CHARS_PER_LINE) + 5 * d.z; // + 10 * d.xRand;
+        return 50 + (300/CHARS_PER_LINE) * (i % CHARS_PER_LINE) - 5 * d.z; // + 10 * d.xRand;
       })
       .attr('y', function (d, i) {
         return 25 + (300/CHARS_PER_LINE) * Math.floor(i / CHARS_PER_LINE);
