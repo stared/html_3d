@@ -1,5 +1,5 @@
 
-[See it live!](http://stated.github.io/html_3d/)
+[See it live!](http://stared.github.io/html_3d/)
 Experience it!
 
 ![Stereoscopic Web Revolution - Screenshot](screenshot.png)
@@ -10,7 +10,7 @@ Flat is boring, eveyone knows.
 
 It's why Earth was made a ball (of course, not initially), and why Einstein invented curved spacetime.
 
-But no more BS - [check it out!](http://stated.github.io/html_3d/) 
+But no more BS - [check it out!](http://stared.github.io/html_3d/) 
 
 ## Libraries
 
