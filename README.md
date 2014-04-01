@@ -1,11 +1,16 @@
 
-See it live! (OK, not yet, but coming soon.)
+[See it live!](http://stated.github.io/html_3d/)
+Experience it!
+
+![Stereoscopic Web Revolution - Screenshot](screenshot.png)
 
 ## Intro
 
 Flat is boring, eveyone knows.
 
-It's why Earth was made a ball (of course, not initially), and why Einstein invented curved spacetime. 
+It's why Earth was made a ball (of course, not initially), and why Einstein invented curved spacetime.
+
+But no more BS - [check it out!](http://stated.github.io/html_3d/) 
 
 ## Libraries
 
