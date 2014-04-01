@@ -120,11 +120,11 @@ var i;
 for (i = 0; i < 2*message.length; i++) {
   if (i % 2 == 0) {
     encrypted.push({character: message[i/2],
-                    z: 1,
+                    z: 0,
                     xRand: (Math.random() - 0.5)});
   } else {
     encrypted.push({character: randomChar(),
-                    z: 0,
+                    z: 1,
                     xRand: (Math.random() - 0.5)});
   }
 }
